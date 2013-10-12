@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="Learn the basics of CSS"/>
+<title>Learn CSS</title>
+<style type="text/css">
+body                                               {color:#d8f8b3;background:#171814;margin:10px;font:12px arial;}
+a                                                  {color:#d8f8b3;text-decoration:none;}
+a:hover                                            {color:#e6bf4d;text-decoration:underline;}
+div#demoCode > h2:first-child                      {margin-top:0;}
+div#demoCode > h2                                  {margin:25px 0 2px 0;font-size:14px;}
+div#demoCode > h2 > a                              {color:#a6e22e;}
+div#demoCode > a                                   {display:block;width:250px;padding:1px 0 1px 10px;font-family:consolas,courier;}
+div#demoCode > a:hover                             {color:#e6bf4d;background:#1e1f1a;text-decoration:none;}
+div#demoCode > a:hover ~ * [class^='t']            {opacity:0.5;}
+div#demoCode > div                                 {position:fixed;top:60px;left:280px;padding:20px;border:1px solid #474849;border-top-style:dashed;border-radius:0 0 4px 4px;background:#1e1f1a;}
+div#demoCode > div  > div:first-child              {position:absolute;left:-1px;right:-1px;padding:15px 20px 100px 20px;border:1px solid #474849;border-bottom:0;border-radius:4px 4px 0 0;top:-48px;font-weight:normal;font-weight:bold;}
+div#demoCode > div  > div:first-child:before       {color:#e6bf4d;content:"/* Tips : ";}
+div#demoCode > div  > div:first-child:after        {color:#e6bf4d;content:" */";}
+div#demoCode > div  > div:first-child > span:after {content:"...";font-weight:normal;}
+div#demoCode > div  > div:first-child + div        {position:absolute;right:5px;bottom:-25px;text-align:right;}
+div#demoCode > div  > div:first-child + div > span {margin:0 15px;}
+div#demoCode > div  > h3                           {margin:0 0 15px 0;}
+div#demoCode   span                                {display:inline-block;}
+div#demoCode   span.node                           {margin:0 10px;}
+div#demoCode   span > span[class^='t']             {color:#f92672;font-family:consolas,courier;}
+div#demoCode   span > span.tB:before               {color:#a6e22e;content:'\3C/';}
+div#demoCode   span > span.tB:after                {color:#a6e22e;content:'\3E' ;}
+div#demoCode   span > span.tA:before               {color:#a6e22e;content:'\3C' ;}
+div#demoCode   span > span.tA:after                {color:#a6e22e;content:'\3E' ;}
+div#demoCode   span > span.tA.tB:after             {color:#a6e22e;content:'/\3E';}
+/* tagName */
+#cmd_star:hover               ~ * .node                                      > [class^=t],
+#cmd_a:hover                  ~ * .a                                         > [class^=t],
+#cmd_span:hover               ~ * .span                                      > [class^=t],
+#cmd_strong:hover             ~ * .strong                                    > [class^=t],
+/* parents selectors */
+#cmd_span__strong:hover       ~ * .span     .strong                          > [class^=t],
+#cmd_span_strong:hover        ~ * .span   > .strong                          > [class^=t],
+#cmd_span__star:hover         ~ * .span     *                                > [class^=t],
+#cmd_span_star:hover          ~ * .span   > *                                > [class^=t],
+#cmd_div_div_ul_li_span:hover ~ * .div    > .div         > .ul > .li > .span > [class^=t],
+#cmd_li__p_em:hover           ~ * .li       .p           > .em               > [class^=t],
+#cmd_ul__p_em:hover           ~ * .ul       .p           > .em               > [class^=t],
+#cmd_div_star_star_em:hover   ~ * .div    > *            > *   > .em         > [class^=t],
+/* brothers selectors */
+#cmd_ul-h3:hover              ~ * .ul     + br + .h3                         > [class^=t],
+#cmd_ul--h3:hover             ~ * .ul     ~ .h3                              > [class^=t],
+#cmd_h3-star_li:hover         ~ * .h3     + br + *       > .li               > [class^=t],
+/* grouping */
+#cmd_a_and_span:hover         ~ * .a                                         > [class^=t],
+#cmd_a_and_span:hover         ~ * .span                                      > [class^=t],
+#cmd_groupingstar:hover       ~ * .node                                      > [class^=t],
+/* id/class */
+#cmd_clssA:hover              ~ * .clssA                                     > [class^=t],
+#cmd_spanclssA:hover          ~ * .span.clssA                                > [class^=t],
+#cmd_spanclssAB:hover         ~ * .span.clssA.clssB                          > [class^=t],
+#cmd_idA:hover                ~ * #idA                                       > [class^=t],
+#cmd_dividA:hover             ~ * .div#idA                                   > [class^=t],
+#cmd_dividAclssC:hover        ~ * .div.clssC#idA                             > [class^=t],
+/* attributes filters */
+#cmd_aonclick:hover           ~ * .a.hrefonclick                             > [class^=t],
+#cmd_ahrefdieze:hover         ~ * .a.hrefdieze                               > [class^=t],
+#cmd_ahrefhttps:hover         ~ * .a.hrefhttps                               > [class^=t],
+#cmd_ahrefcom:hover           ~ * .a.hrefcom                                 > [class^=t],
+#cmd_ahrefgoogle:hover        ~ * .a.hrefgoogle                              > [class^=t],
+#cmd_classclssA:hover         ~ * .clssA                                     > [class^=t],
+#cmd_langfr:hover             ~ * .langfr                                    > [class^=t],
+#cmd_ahrefhttpsgoogle:hover   ~ * .hrefhttps.hrefgoogle                      > [class^=t],
+/* pseudo-classes */
+#cmd_spanfirstchild:hover     ~ * .tA:first-child + .span                    > [class^=t],
+#cmd_spanfirstchild:hover     ~ * .tA:first-child + br + .span               > [class^=t],
+#cmd_spanlastchild:hover      ~ * .span.last-child                           > [class^=t],
+#cmd_spanonlychild:hover      ~ * .span.first-child.last-child               > [class^=t],
+#cmd_spannthchild2:hover      ~ * .span.nth-child2                           > [class^=t],
+#cmd_spannthlastchild2:hover  ~ * .span.nth-last-child2                      > [class^=t],
+#cmd_empty:hover              ~ * .empty                                     > [class^=t],
+#cmd_spanfirstoftype:hover    ~ * .span.first-of-type                        > [class^=t],
+#cmd_spanlastoftype:hover     ~ * .span.last-of-type                         > [class^=t],
+#cmd_spanonlyoftype:hover     ~ * .span.first-of-type.last-of-type           > [class^=t],
+#cmd_spannthoftype2:hover     ~ * .span.nth-of-type2                         > [class^=t],
+#cmd_spannthlastoftype2:hover ~ * .span.nth-last-of-type2                    > [class^=t]
+{color:#ae81ff;opacity:1.0;}
+
+/* Explications */
+#cmd_star:hover               ~ div > div:first-child > span:after {content:'L\'étoile sélectionne absolument tous les éléments du DOM même les balises \3C head\3E , \3C script\3E , etc.';}
+#cmd_a:hover                  ~ div > div:first-child > span:after {content:'Sélection de tous les \3C a\3E  du document';}
+#cmd_span:hover               ~ div > div:first-child > span:after {content:'Sélection de tous les \3C span\3E  du document';}
+#cmd_strong:hover             ~ div > div:first-child > span:after {content:'Sélection de tous les \3C strong\3E  du document';}
+
+#cmd_span__strong:hover       ~ div > div:first-child > span:after {content:'Sélection des \3C strong\3E  ayant un parent (ou grand-parent) de type \3C span\3E ';}
+#cmd_span_strong:hover        ~ div > div:first-child > span:after {content:'Sélection des \3C strong\3E  ayant comme parent direct un \3C span\3E "';}
+#cmd_span__star:hover         ~ div > div:first-child > span:after {content:'Sélection de tous les éléments ayant un parent (ou grand-parent) de type \3C span\3E ';}
+#cmd_span_star:hover          ~ div > div:first-child > span:after {content:'Sélection de tous les éléments ayant comme parent direct un \3C span\3E ';}
+#cmd_div_div_ul_li_span:hover ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  ayant comme parent un \3C li\3E , comme grand-parent un \3C ul\3E , etc. sont sélectionnés';}
+#cmd_li__p_em:hover           ~ div > div:first-child > span:after {content:'Sélection des \3C em\3E  ayant comme parent direct un \3C p\3E  qui à son tour a un parent ou grand-parent de type \3C li\3E ';}
+#cmd_ul__p_em:hover           ~ div > div:first-child > span:after {content:'Sélection des \3C em\3E  ayant comme parent direct un \3C p\3E  qui à son tour a un parent ou grand-parent de type \3C ul\3E ';}
+#cmd_div_star_star_em:hover   ~ div > div:first-child > span:after {content:'Sélection des \3C em\3E  ayant comme arrière-grand-parent un \3C div\3E ';}
+
+#cmd_ul-h3:hover              ~ div > div:first-child > span:after {content:'Sélection des \3C h3\3E  étant directement en dessous d\'un \3C ul\3E ';}
+#cmd_ul--h3:hover             ~ div > div:first-child > span:after {content:'Sélection de tous les \3C h3\3E  étant au même rang et en dessous d\'un \3C ul\3E  (« The Twins » n\'est donc pas sélectionnés)';}
+#cmd_h3-star_li:hover         ~ div > div:first-child > span:after {content:'Sélection des \3C li\3E  contenus dans les listes précédés d\'un \3C h3\3E ';}
+
+#cmd_a_and_span:hover         ~ div > div:first-child > span:after {content:'Sélection de tous les \3C a\3E  et tous les \3C span\3E ';}
+#cmd_groupingfail:hover       ~ div > div:first-child > span:after {content:'À cause de l\'erreur de syntaxe aucun des \3C a\3E  ou autres \3C span\3E  n\'est sélectionnés';}
+#cmd_groupingstar:hover       ~ div > div:first-child > span:after {content:'Grouping inutile car l\'étoile sélectionne tous les éléments d\'un coup';}
+
+#cmd_clssA:hover              ~ div > div:first-child > span:after {content:'Sélection de tous les éléments ayant la classe « clssA »';}
+#cmd_spanclssA:hover          ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  ayant la classe « clssA »';}
+#cmd_spanclssAB:hover         ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  ayant les classes « clssA » et « clssB »';}
+#cmd_idA:hover                ~ div > div:first-child > span:after {content:'Sélection de l\'élément ayant l\'id « idA »';}
+#cmd_dividA:hover             ~ div > div:first-child > span:after {content:'Sélection du \3C div\3E  ayant l\'id « idA »';}
+#cmd_dividAclssC:hover        ~ div > div:first-child > span:after {content:'Sélection du \3C div\3E  ayant l\'id « idA » et la classe « clssC »';}
+
+#cmd_aonclick:hover           ~ div > div:first-child > span:after {content:'Sélection des \3C a\3E  ayant un attribut « onclick »';}
+#cmd_ahrefdieze:hover         ~ div > div:first-child > span:after {content:'Sélection des \3C a\3E  ayant un attribut « href » avec pour valeur « # »';}
+#cmd_ahrefhttps:hover         ~ div > div:first-child > span:after {content:'Sélection des \3C a\3E  ayant un attribut « href » dont la valeur commence par « https:// »';}
+#cmd_ahrefcom:hover           ~ div > div:first-child > span:after {content:'Sélection des \3C a\3E  ayant un attribut « href » dont la valeur termine par « .com »';}
+#cmd_ahrefgoogle:hover        ~ div > div:first-child > span:after {content:'Sélection des \3C a\3E  ayant un attribut « href » contenant « google »';}
+#cmd_classclssA:hover         ~ div > div:first-child > span:after {content:'Sélection des éléments ayant le mot « clssA » dans l\'attribut « class »';}
+#cmd_langfr:hover             ~ div > div:first-child > span:after {content:'Sélection des éléments ayant un attribut « lang » avec pour valeur « fr » ou commencant par « fr- »';}
+#cmd_ahrefhttpsgoogle:hover   ~ div > div:first-child > span:after {content:'Il est possible de cumuler autant de filtres qu\'il y a besoin';}
+
+#cmd_spanfirstchild:hover     ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  qui se trouvent être le premier enfant de leur parent';}
+#cmd_spanlastchild:hover      ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  qui se trouvent être le dernier enfant de leur parent';}
+#cmd_spanonlychild:hover      ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  qui se trouvent être à la fois le premier et le dernier enfant de leur parent (similaire à « span:first-child:last-child »)';}
+#cmd_spannthchild2:hover      ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  qui se trouvent être le deuxième enfant de leur parent (« Trinity » et « Colt » ne sont donc pas sélectionnés)';}
+#cmd_spannthlastchild2:hover  ~ div > div:first-child > span:after {content:'Sélection des \3C span\3E  qui se trouvent être l\'avant-dernier enfant de leur parent (« Neo » et « Maggie » ne sont donc pas sélectionnés)';}
+#cmd_empty:hover              ~ div > div:first-child > span:after {content:'Sélection de tous les éléments n\'ayant absolument aucun enfant ni même aucun text, seul les commentaires HTML seront ignorés';}
+#cmd_spanfirstoftype:hover    ~ div > div:first-child > span:after {content:'Sélection du premier enfant de type \3C span\3E  de chaque élément';}
+#cmd_spanlastoftype:hover     ~ div > div:first-child > span:after {content:'Sélection du dernier enfant de type \3C span\3E  de chaque élément';}
+#cmd_spanonlyoftype:hover     ~ div > div:first-child > span:after {content:'Équivalent de « span:first-of-type:last-of-type; »';}
+#cmd_spannthoftype2:hover     ~ div > div:first-child > span:after {content:'Sélection du deuxième \3C span\3E  de chaque élément';}
+#cmd_spannthlastoftype2:hover ~ div > div:first-child > span:after {content:'Sélection de l\'avant-dernier \3C span\3E  de chaque élément';}
+
+</style>
+</head>
+<body>
+<div id="demoCode">
+	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Type_Selector"                                               >types selectors</a></h2>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/universal_selector"                      id="cmd_star"               >*</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/type_selector"                           id="cmd_a"                  >a</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/type_selector"                           id="cmd_span"               >span</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/type_selector"                           id="cmd_strong"             >strong</a>
+	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Descendant_combinator"                                       >parents combinators</a></h2>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/descendant"                  id="cmd_span__strong"       >span strong</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/child"                       id="cmd_span_strong"        >span > strong</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/descendant"                  id="cmd_span__star"         >span *</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/child"                       id="cmd_span_star"          >span > *</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/child"                       id="cmd_div_div_ul_li_span" >div > div > ul > li > span</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/child"                       id="cmd_li__p_em"           >li p > em</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/child"                       id="cmd_ul__p_em"           >ul p > em</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/child"                       id="cmd_div_star_star_em"   >div > * > * > em</a>
+	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Adjacent_sibling_combinator"                                 >brothers combinators</a></h2>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/adjacent"                    id="cmd_ul-h3"              >ul + h3</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/general"                     id="cmd_ul--h3"             >ul ~ h3</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/combinators/adjacent"                    id="cmd_h3-star_li"         >h3 + * > li</a>
+	<h2><a href="http://www.w3.org/TR/CSS2/selector.html#grouping"                                                 >grouping</a></h2>
+	<a href="http://www.w3.org/TR/CSS2/selector.html#grouping"                             id="cmd_a_and_span"         >a, span</a>
+	<a href="http://www.w3.org/TR/CSS2/selector.html#grouping"                             id="cmd_groupingfail"       >a, syntax # error, span</a>
+	<a href="http://www.w3.org/TR/CSS2/selector.html#grouping"                             id="cmd_groupingstar"       >a, *, span</a>
+	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Class_Selector"                                                  >.class/#id selectors</a></h2>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/class_selector"                          id="cmd_clssA"              >.clssA</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/class_selector"                          id="cmd_spanclssA"          >span.clssA</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/class_selector"                          id="cmd_spanclssAB"         >span.clssA.clssB</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/id_selector"                             id="cmd_idA"                >#idA</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/id_selector"                             id="cmd_dividA"             >div#idA</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/id_selector"                             id="cmd_dividAclssC"        >div#idA.clssC</a>
+	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Attribute_Selector"                                          >attributes selectors</a></h2>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attribute"            id="cmd_aonclick"           >a[onclick]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attribute%3Dvalue"    id="cmd_ahrefdieze"         >a[href=#]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attribute%5E%3Dvalue" id="cmd_ahrefhttps"         >a[href^=https://]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attribute$%3Dvalue"   id="cmd_ahrefcom"           >a[href$=.com]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attribute*%3Dvalue"   id="cmd_ahrefgoogle"        >a[href*=google]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attribute~%3Dvalue"   id="cmd_classclssA"         >*[class~=clssA]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/attribute_selector/attributel%3Dvalue"   id="cmd_langfr"             >[lang|=fr]</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors#Attribute_Selector"                      id="cmd_ahrefhttpsgoogle"   >a[href^=https://][href*=google]</a>
+	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Structural_pseudo-classes"                                   >pseudo-classes</a></h2>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:first-child"             id="cmd_spanfirstchild"     >span:first-child</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:last-child"              id="cmd_spanlastchild"      >span:last-child</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:only-child"              id="cmd_spanonlychild"      >span:only-child</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:nth-child"               id="cmd_spannthchild2"      >span:nth-child(2)</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:nth-last-child"          id="cmd_spannthlastchild2"  >span:nth-last-child(2)</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:empty"                   id="cmd_empty"              >:empty</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:first-of-type"           id="cmd_spanfirstoftype"    >span:first-of-type</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:last-of-type"            id="cmd_spanlastoftype"     >span:last-of-type</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:only-of-type"            id="cmd_spanonlyoftype"     >span:only-of-type</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:nth-of-type"             id="cmd_spannthoftype2"     >span:nth-of-type(2)</a>
+	<a href="http://www.w3.org/wiki/CSS/Selectors/pseudo-classes/:nth-last-of-type"        id="cmd_spannthlastoftype2" >span:nth-last-of-type(2)</a>
+	<br/>
+	<br/>
+	<div>
+		<div><span></span></div>
+		<div>
+			<a href="http://www.w3.org/wiki/CSS/Selectors"><strong>W3C</strong> - CSS Selectors - documentation</a><span>|
+			</span><a href="http://www.sublimetext.com/">Les couleurs viennent de <strong>Sublimetext</strong></a><span>|
+			</span><a href="https://github.com/Mr21/learnCSS">Ce fichier est sur <strong>GitHub</strong></a>
+		</div>
+		<h3>Apercu&nbsp;:</h3>
+		<span class="node div"><span class="tA">div id="global"</span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node span first-of-type nth-last-of-type2"><span class="tA">span</span>Neo<span class="node strong"><span class="tA">strong</span>The Oracle<span class="node strong"><span class="tA">strong</span>Niobe<span class="tB">strong</span></span><span class="tB">strong</span></span><span class="tB">span</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node strong"><span class="tA">strong lang="francais"</span>Morpheus<span class="tB">strong</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node span clssA nth-of-type2 last-of-type"><span class="tA">span class="clssA"</span>Trinity<span class="node em langfr"><span class="tA">em lang="fr"</span>SpoonBoy<span class="tB">em</span></span><span class="tB">span</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node p langfr"><span class="tA">p lang="fr-Francais"</span>Mouse<span class="tB">p</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node div clssA"><span class="tA">div class="clssA clssB clssC"</span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node input empty"><span class="tA tB">input type="text" name="user"</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node h3 clssA"><span class="tA">h3 class="clssB clssA"</span><span class="node span first-child first-of-type last-child last-of-type"><span class="tA">span</span>Switch<span class="node em"><span class="tA">em</span>Persephone<span class="tB">em</span></span><span class="tB">span</span></span><span class="tB">h3</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node ul"><span class="tA">ul</span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node p"><span class="tA">p</span><span class="node em"><span class="tA">em</span>Mifune<span class="tB">em</span></span><span class="tB">p</span></span><span class="node a hrefdieze langfr"><span class="tA">a href="#" lang="fr-"</span>Ghost<span class="tB">a</span></span><span class="tB">li</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node span clssB clssA nth-last-child2 first-of-type last-of-type"><span class="tA">span class="clssB clssA"</span>The Keymaker<span class="tB">span</span></span><span class="node a hrefgoogle hrefcom"><span class="tA">a href="http://google.com"</span>Tank<span class="tB">a</span></span><span class="tB">li</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node p clssA"><span class="tA">p class="clssA"</span><span class="node a hrefhttps hrefgoogle"><span class="tA">a href="https://google.com/"</span><span class="node em"><span class="tA">em</span>Dozer<span class="tB">em</span></span><span class="tB">a</span><span class="tB">p</span></span></span><span class="tB">li</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node a hrefdieze hrefonclick"><span class="tA">a href="#" onclick="alert('Javascript');"</span>Link<span class="tB">a</span></span><span class="node span first-of-type nth-child2 last-child last-of-type"><span class="tA">span</span>The Architect<span class="tB">span</span></span><span class="tB">li</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span id="idA" class="node div clssC"><span class="tA">div id="idA" class="clssC"</span><span class="node p"><span class="tA">p</span><span class="node em"><span class="tA">em</span>Lock<span class="tB">em</span></span><span class="tB">p</span></span><span class="tB">div</span></span><span class="node a hrefhttps hrefcom"><span class="tA">a href="https://github.com"</span>Kid<span class="tB">a</span></span><span class="tB">li</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node a hrefonclick"><span class="tA">a href="/" onclick=""</span>Bane<span class="tB">a</span></span><span class="node span first-of-type nth-child2 nth-last-of-type2"><span class="tA">span</span>Maggie<span class="tB">span</span></span><span class="node span nth-last-child2 nth-of-type2 last-of-type"><span class="tA">span</span>Colt<span class="tB">span</span></span><span class="node h2 empty"><span class="tA">h2</span><span class="tB">h2</span></span><span class="tB">li</span></span><br/>
+		<span class="tB">ul</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node h3"><span class="tA">h3</span>Cypher<span class="tB">h3</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node ol"><span class="tA">ol</span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node em"><span class="tA">em</span>Seraph<span class="tB">em</span></span><span class="node p"><span class="tA">p</span><span class="node em"><span class="tA">em</span>Apok<span class="tB">em</span></span><span class="tB">p</span></span><span class="tB">li</span></span><br/>
+		<span class="tB">ol</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node h3 clssA"><span class="tA">h3 class="clssA"</span>Ballard<span class="tB">h3</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node h2 empty"><span class="tA">h2</span><span class="node com"><span class="tA">!-- commentaire --</span></span><span class="tB">h2</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node ul"><span class="tA">ul</span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node em"><span class="tA">em</span>The Merovingian<span class="tB">em</span></span><span class="node h3"><span class="tA">h3</span>The Twins<span class="tB">h3</span></span><span class="tB">li</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node li"><span class="tA">li</span><span class="node span first-child first-of-type last-child last-of-type"><span class="tA">span</span>Sati<span class="tB">span</span></span><span class="tB">li</span></span><br/>
+		<span class="tB">ul</span></span><br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="node span first-of-type last-child last-of-type"><span class="tA">span</span>Roland<span class="tB">span</span></span><br/>
+		<span class="tB">div</span></span><br/>
+		<span class="tB">div</span></span><br/>
+	</div>
+</div>
+</body>
+</html>
+
+<!--
+<span class="node tag"><span class="tA">tag</span>content<span class="tB">tag</span></span>
+-->
