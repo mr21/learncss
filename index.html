@@ -149,6 +149,16 @@ div#demoCode   span > span.tA.tB:after             {color:#a6e22e;content:'/\3E'
 </style>
 </head>
 <body>
+<div id="fb-root"></div>
+<script type="text/javascript">
+	(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
 <div id="demoCode">
 	<h2><a href="http://www.w3.org/wiki/CSS/Selectors#Type_Selector"                                               >types selectors</a></h2>
 	<a href="http://www.w3.org/wiki/CSS/Selectors/universal_selector"                      id="cmd_star"               >*</a>
@@ -206,8 +216,8 @@ div#demoCode   span > span.tA.tB:after             {color:#a6e22e;content:'/\3E'
 		<div><span></span></div>
 		<div>
 			<a href="http://www.w3.org/wiki/CSS/Selectors"><strong>W3C</strong> - CSS Selectors - documentation</a><span>|
-			</span><a href="http://www.sublimetext.com/">Les couleurs viennent de <strong>Sublimetext</strong></a><span>|
-			</span><a href="https://github.com/Mr21/learnCSS">Ce fichier est sur <strong>GitHub</strong></a>
+			</span><a href="https://github.com/Mr21/learnCSS">Ce fichier est sur <strong>GitHub</strong></a><span>|
+			</span><div class="fb-like" data-href="http://mr21.fr/learnCSS/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 		</div>
 		<h3>Apercu&nbsp;:</h3>
 		<span class="node div"><span class="tA">div id="global"</span><br/>
