@@ -192,7 +192,7 @@ window.onload = function() {
 		<a href="#" title="Sélection des <i>span</i> ayant comme parent un <i>li</i>, comme grand-parent un <i>ul</i>, etc. sont sélectionnés">div &gt; div &gt; ul &gt; li &gt; span</a>
 		<a href="#" title="Sélection des <i>em</i> ayant comme parent direct un <i>p</i> qui à son tour a un parent ou grand-parent de type <i>li</i>">li p &gt; em</a>
 		<a href="#" title="Sélection des <i>em</i> ayant comme parent direct un <i>p</i> qui à son tour a un parent ou grand-parent de type <i>ul</i>">ul p &gt; em</a>
-		<a href="#" title="Sélection des <i>em</i> ayant comme arrière-grand-parent un <i>div</i>">div &gt; * &gt; * &gt; em</a>
+		<a href="#" title="Sélection des <i>em</i> ayant comme arrière-grand-parent un <i>div</i> (le parent et le grand-parent peuvent être n'importe quoi)">div &gt; * &gt; * &gt; em</a>
 	<h2>brothers combinators</h2>
 		<a href="#" title="Sélection des <i>h3</i> étant directement en dessous d'un <i>ul</i>">ul + h3</a>
 		<a href="#" title="Sélection de tous les <i>h3</i> étant au même rang et en dessous d'un <i>ul</i> (« The Twins » n'est donc pas sélectionné)">ul ~ h3</a>
@@ -228,6 +228,7 @@ window.onload = function() {
 		<a href="#" title="Sélection des <i>span</i> qui se trouvent être l'avant-dernier enfant de leur parent (« Neo » et « Maggie » ne sont donc pas sélectionnés)">span:nth-last-child(2)</a>
 		<a href="#" title="Sélection de tous les éléments n'ayant absolument aucun enfant ni même aucun text, seul les commentaires HTML seront ignorés">:empty</a>
 		<a href="#" title="Sélection du premier enfant de type <i>span</i> de chaque élément">span:first-of-type</a>
+		<a href="#" title="Aucun <i>li</i> n'est sélectionné (le <i>li</i> « Lock » n'est pas le premier de son type dans son parent)">li.cA:first-of-type</a>
 		<a href="#" title="Sélection du dernier enfant de type <i>span</i> de chaque élément">span:last-of-type</a>
 		<a href="#" title="Équivalent de « span:first-of-type:last-of-type; »">span:only-of-type</a>
 		<a href="#" title="Sélection du deuxième <i>span</i> de chaque élément">span:nth-of-type(2)</a>
@@ -257,8 +258,8 @@ window.onload = function() {
 			<li><span class="cB cA">The Keymaker</span><a href="http://google.com">Tank</a></li>
 			<li><p class="cA"><a href="https://mail.google.com/"><em>Dozer</em></a></p></li>
 			<li><a href="#" title="hash">Link</a><span>The Architect</span></li>
-			<li><div id="idA" class="cC"><p><em>Lock</em></p></div><a href="https://github.com">Kid</a></li>
-			<li><a href="/" title="">Bane</a><span>Maggie</span><span>Colt</span><h2></h2></li>
+			<li class="cA"><div id="idA" class="cC"><p><em>Lock</em></p></div><a href="https://github.com">Kid</a></li>
+			<li class="cA"><a href="/" title="">Bane</a><span>Maggie</span><span>Colt</span><h2></h2></li>
 		</ul>
 		<h3>Cypher</h3>
 		<ol>
