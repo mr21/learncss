@@ -21,6 +21,8 @@ a:hover { color:#e6bf4d; text-decoration:underline; }
 #help:before { color:#a6e22e; font-weight:bold; content:'/* Aide : '; }
 #help:after  { color:#a6e22e; font-weight:bold; content:' */'; }
 #help:empty:after { font-weight:normal; content:'... */'; }
+#help i:before { content:'\3C'; }
+#help i:after  { content:'\3E'; }
 
 #demoCode { display:none; }
 #html  { margin:20px 0 0 10px; font:12px consolas; }
@@ -168,28 +170,28 @@ window.onload = function() {
 		<a href="#" data="Sélection des <i>em</i> ayant comme arrière-grand-parent un <i>div</i>">div &gt; * &gt; * &gt; em</a>
 	<h2>brothers combinators</h2>
 		<a href="#" data="Sélection des <i>h3</i> étant directement en dessous d'un <i>ul</i>">ul + h3</a>
-		<a href="#" data="Sélection de tous les <i>h3</i> étant au même rang et en dessous d'un <i>ul</i> (« The Twins » n'est donc pas sélectionnés)">ul ~ h3</a>
+		<a href="#" data="Sélection de tous les <i>h3</i> étant au même rang et en dessous d'un <i>ul</i> (« The Twins » n'est donc pas sélectionné)">ul ~ h3</a>
 		<a href="#" data="Sélection des <i>li</i> contenus dans les listes précédés d'un <i>h3</i>">h3 + * &gt; li</a>
-	<h2>grouping</h2>
-		<a href="#" data="Sélection de tous les <i>a</i> et tous les <i>span</i>">a, span</a>
-		<a href="#" data="À cause de l'erreur de syntaxe aucun des <i>a</i> ou autres <span> n'est sélectionnés">a, syntax # error, span</a>
-		<a href="#" data="Grouping inutile car l'étoile sélectionne tous les éléments d'un coup">a, *, span</a>
 	<h2>.class/#id selectors</h2>
-		<a href="#" data="Sélection de tous les éléments ayant la classe « clssA »">.clssA</a>
-		<a href="#" data="Sélection des <i>span</i> ayant la classe « clssA »">span.clssA</a>
-		<a href="#" data="Sélection des <i>span</i> ayant les classes « clssA » et « clssB »">span.clssA.clssB</a>
+		<a href="#" data="Sélection de tous les éléments ayant la classe « cA »">.cA</a>
+		<a href="#" data="Sélection des <i>span</i> ayant la classe « cA »">span.cA</a>
+		<a href="#" data="Sélection des <i>span</i> ayant les classes « cA » et « cB »">span.cA.cB</a>
 		<a href="#" data="Sélection de l'élément ayant l'id « idA »">#idA</a>
 		<a href="#" data="Sélection du <i>div</i> ayant l'id « idA »">div#idA</a>
-		<a href="#" data="Sélection du <i>div</i> ayant l'id « idA » et la classe « clssC »">div#idA.clssC</a>
+		<a href="#" data="Sélection du <i>div</i> ayant l'id « idA » et la classe « cC »">div#idA.cC</a>
+	<h2>grouping</h2>
+		<a href="#" data="Sélection de tous les <i>a</i> et tous les <i>span</i>">a, span</a>
+		<a href="#" data="Grouping inutile car l'étoile sélectionne tous les éléments d'un coup">a, *, span</a>
+		<a href="#" data="Sélection des <i>span</i> qui ont la class « cA » ou « cB »">span.cA, span.cB</a>
 	<h2>attributes selectors</h2>
-		<a href="#" data="Sélection des <i>a</i> ayant un attribut « title »">a[title]</a>
+		<a href="#" data="Sélection des <i>a</i> ayant un attribut « title » avec une valeur ou non">a[title]</a>
 		<a href="#" data="Sélection des <i>a</i> ayant un attribut « href » avec pour valeur « # »">a[href='#']</a>
-		<a href="#" data="Sélection des <i>a</i> ayant un attribut « href » dont la valeur commence par « https:// »">a[href^='https://']</a>
+		<a href="#" data="Sélection des <i>a</i> ayant un attribut « href » dont la valeur commence par « https: »">a[href^='https:']</a>
 		<a href="#" data="Sélection des <i>a</i> ayant un attribut « href » dont la valeur termine par « .com »">a[href$='.com']</a>
 		<a href="#" data="Sélection des <i>a</i> ayant un attribut « href » contenant « google »">a[href*='google']</a>
-		<a href="#" data="Sélection des éléments ayant le mot « clssA » dans l'attribut « class »">*[class~='clssA']</a>
-		<a href="#" data="Sélection des éléments ayant un attribut « lang » avec pour valeur « fr » ou commencant par « fr- »">[lang|='fr']</a>
-		<a href="#" data="Il est possible de cumuler autant de filtres qu'il y a besoin">a[href^='https://'][href*='google']</a>
+		<a href="#" data="Sélection des éléments ayant le mot « cA » dans l'attribut « class » (exactement identique à « *.cA », l'étoile est inutile ici)">*[class~='cA']</a>
+		<a href="#" data="Sélection des éléments ayant un attribut « lang » avec pour valeur « fr » ou commencant par « fr- » (« Morpheus » n'est donc pas sélectionné)">[lang|='fr']</a>
+		<a href="#" data="Il est possible de cumuler autant de filtres que l'on veut">a[href^='https:'][href*='google']</a>
 	<h2>pseudo-classes</h2>
 		<a href="#" data="Sélection des <i>span</i> qui se trouvent être le premier enfant de leur parent">span:first-child</a>
 		<a href="#" data="Sélection des <i>span</i> qui se trouvent être le dernier enfant de leur parent">span:last-child</a>
@@ -211,29 +213,29 @@ window.onload = function() {
 
 <div id="demoCode"><div>
 	<span>Neo<strong>The Oracle<strong>Niobe</strong></strong></span>
-	<strong lang="francais">Strong</strong>
-	<span class="clssA">Trinity<em lang="fr">SpoonBoy</em></span>
+	<strong lang="francais">Morpheus</strong>
+	<span class="cA">Trinity<em lang="fr">SpoonBoy</em></span>
 	<p lang="fr-Francais">Mouse</p>
-	<div class="clssA clssB clssC">
+	<div class="cA cB cC">
 		<input type="text" name="user"/>
-		<h3 class="clssB clssA"><span>Switch<em>Persephone</em></span></h3>
+		<h3 class="cB cA"><span>Switch<em>Persephone</em></span></h3>
 		<ul>
 			<li><p><em>Mifune</em></p><a href="#" lang="fr-">Ghost</a></li>
-			<li><span class="clssB clssA">The Keymaker</span><a href="http://google.com">Tank</a></li>
-			<li><p class="clssA"><a href="https://google.com/"><em>Dozer</em></a></p></li>
+			<li><span class="cB cA">The Keymaker</span><a href="http://google.com">Tank</a></li>
+			<li><p class="cA"><a href="https://mail.google.com/"><em>Dozer</em></a></p></li>
 			<li><a href="#" title="hash">Link</a><span>The Architect</span></li>
-			<li><div id="idA" class="clssC"><p><em>Lock</em></p></div><a href="https://github.com">Kid</a></li>
+			<li><div id="idA" class="cC"><p><em>Lock</em></p></div><a href="https://github.com">Kid</a></li>
 			<li><a href="/" title="">Bane</a><span>Maggie</span><span>Colt</span><h2></h2></li>
 		</ul>
 		<h3>Cypher</h3>
 		<ol>
 			<li><em>Seraph</em><p><em>Apok</em></p></li>
 		</ol>
-		<h3 class="clssA">Ballard</h3>
+		<h3 class="cA">Ballard</h3>
 		<h2><!-- Commentaire --></h2>
 		<ul>
 			<li><em>The Merovingian</em><h3>The Twins</h3></li>
-			<li><span>Sati</span></li>
+			<li><span class="cB">Sati</span></li>
 		</ul>
 		<span>Roland</span>
 	</div>
