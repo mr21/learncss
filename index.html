@@ -42,13 +42,10 @@ ul#menu li + li:before { content:'|'; margin:0 20px; }
 .node .tag    { color:#f92672; }
 .node .attr   { color:#a6e22e; }
 .node .value  { color:#e6db74; }
-#html.selected .node          { opacity:0.33; }
-#html.selected .node.selected { opacity:1; background:#222; border-color:#333; }
+#html[selected='1'] .node               { opacity:0.33; }
+#html[selected='1'] .node[selected='1'] { opacity:1.00; background:#222; border-color:#333; }
 </style>
-<script type="text/javascript" src="../JsExt/ClassName.js"></script>
 <script type="text/javascript">
-
-function lg(s) { console.log(s); }
 
 function isOrphanTag(tag) {
 	return tag === 'INPUT'
@@ -110,18 +107,14 @@ function list(node) {
 }
 
 function selectDOM(selector) {
-	var fn;
-	if (!selector) {
-		fn = '_delClass';
-	} else {
-		fn = '_addClass';
+	var selected = !!selector * 1;
+	if (selector)
 		selectDOM.elems = demoCode.querySelectorAll(selector);
-	}
 	if (selectDOM.elems) {
-		htmlDiv[fn]('selected');
+		htmlDiv.setAttribute('selected', selected);
 		for (var i = 0, e; e = selectDOM.elems[i]; ++i) {
-			if (e._span[0]) e._span[0][fn]('selected');
-			if (e._span[1]) e._span[1][fn]('selected');
+			if (e._span[0]) e._span[0].setAttribute('selected', selected);
+			if (e._span[1]) e._span[1].setAttribute('selected', selected);
 		}
 		if (!selector)
 			selectDOM.elems = null;
@@ -141,12 +134,12 @@ window.onload = function() {
 		a.onclick = function() {
 			selectDOM();
 			if (linkSelected)
-				linkSelected._delClass('selected');
+				linkSelected.className = '';
 			if (linkSelected === this) {
 				linkSelected = null;
 				helpDiv.innerHTML = '';
 			} else {
-				this._addClass('selected');
+				this.className = 'selected';
 				helpDiv.innerHTML = this._helpStr;
 				selectDOM(this.innerHTML.replace(/&gt;/g, '>'));
 				linkSelected = this;
