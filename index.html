@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>learnCSS</title>
-<meta charset='utf-8'/>
+<meta charset="UTF-8"/>
 <style type="text/css">
 html, body { height:100%; }
 body    { color:#d8f8b3; background:#171814; margin:0; font:12px arial; }
@@ -46,6 +46,9 @@ ul#menu li + li:before { content:'|'; margin:0 20px; }
 #html[selected='1'] .node[selected='1'] { opacity:1.00; background:#222; border-color:#333; }
 </style>
 <script type="text/javascript">
+
+if (top.location === self.location)
+	location = 'http://mr21.fr/learnCSS';
 
 function isOrphanTag(tag) {
 	return tag === 'INPUT'
@@ -149,27 +152,8 @@ window.onload = function() {
 	}
 };
 </script>
-<!-- JS.Analytics -->
-<script type="text/javascript">
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-418864-4', 'mr21.fr');
-	ga('send', 'pageview');
-</script>
 </head>
 <body>
-<div id="fb-root"></div>
-<script type="text/javascript">
-	(function(d, s, id){
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 
 <div id="panel">
 	<h2>tags selectors</h2>
@@ -229,11 +213,6 @@ window.onload = function() {
 </div>
 
 <div id="columnRight">
-	<ul id="menu">
-		<li><a href="http://www.w3.org/community/webed/wiki/CSS/Selectors"><strong>W3C</strong> - CSS Selectors - documentation</a></li>
-		<li><a href="https://github.com/Mr21/learnCSS">Ce fichier est sur <strong>GitHub</strong></a></li>
-		<li><div class="fb-like" data-href="http://mr21.fr/learnCSS/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div></li>
-	</ul>
 	<div id="help"></div>
 	<div id="html"></div>
 </div>
