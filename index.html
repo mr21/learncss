@@ -3,13 +3,19 @@
 <head>
 <title>learnCSS</title>
 <meta charset="UTF-8"/>
+<link rel="stylesheet" href="../_/fa/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../_/header.css"/>
+<meta property="og:title"       content="LearnCSS"/>
+<meta property="og:url"         content="https://mr21.github.io/learncss/"/>
+<meta property="og:image"       content="https://mr21.github.io/learncss/thumbnail.jpg"/>
+<meta property="og:description" content="Learn interactively all the CSS selectors !"/>
 <style type="text/css">
 html, body { height:100%; }
-body    { color:#d8f8b3; background:#171814; margin:0; font:12px arial; }
+body    { color:#d8f8b3; background:#222; margin:0; font:12px arial; }
 a       { color:#d8f8b3; text-decoration:none; }
 a:hover { color:#e6bf4d; text-decoration:underline; }
 
-#panel { position:absolute; top:0; bottom:0; overflow:auto; width:280px; padding:0 10px 50px 10px; border-right:2px solid #111; background:#222; }
+#panel { position:absolute; top:28px; bottom:0; overflow:auto; width:280px; padding:0 10px 50px 10px; border-right:2px solid #111; }
 #panel h2 { margin:22px 0 5px 0; font-size:16px; color:#a6e22e; }
 #panel a          { display:block; font:12px consolas; padding:2px 4px; border-radius:2px; }
 #panel a:hover    { text-decoration:none; background:#2a2a2a; }
@@ -45,10 +51,9 @@ ul#menu li + li:before { content:'|'; margin:0 20px; }
 #html[selected='1'] .node               { opacity:0.33; }
 #html[selected='1'] .node[selected='1'] { opacity:1.00; background:#222; border-color:#333; }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../_/header.js"></script>
 <script type="text/javascript">
-
-if (top.location === self.location)
-	location = 'http://mr21.fr/learnCSS';
 
 function isOrphanTag(tag) {
 	return tag === 'INPUT'
@@ -154,6 +159,11 @@ window.onload = function() {
 </script>
 </head>
 <body>
+
+<div id="header">
+	<i class="fa fa-fw fa-css3"></i>
+	<h1>LearnCSS</h1>
+</div>
 
 <div id="panel">
 	<h2>tags selectors</h2>
