@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>learnCSS</title>
+<title>LearnCSS</title>
 <meta charset="UTF-8"/>
-<link rel="stylesheet" href="../_/fa/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="../_/header.css"/>
 <meta property="og:title"       content="LearnCSS"/>
 <meta property="og:url"         content="https://mr21.github.io/learncss/"/>
 <meta property="og:image"       content="https://mr21.github.io/learncss/thumbnail.jpg"/>
 <meta property="og:description" content="Learn interactively all the CSS selectors !"/>
-<style type="text/css">
-html, body { height:100%; }
-body    { color:#d8f8b3; background:#222; margin:0; font:12px arial; }
+<link rel="stylesheet" href="../_/fa/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../_/header.css"/>
+<style>
+body    { color:#d8f8b3; background:#222; font:12px arial; }
 a       { color:#d8f8b3; text-decoration:none; }
 a:hover { color:#e6bf4d; text-decoration:underline; }
 
-#panel { position:absolute; top:28px; bottom:0; overflow:auto; width:280px; padding:0 10px 50px 10px; border-right:2px solid #111; }
+#global { position:relative; height:100%; }
+
+#panel { box-sizing:border-box; width:280px; height:100%; overflow:auto; padding:0 10px 50px 10px; border-right:2px solid #111; }
 #panel h2 { margin:22px 0 5px 0; font-size:16px; color:#a6e22e; }
 #panel a          { display:block; font:12px consolas; padding:2px 4px; border-radius:2px; }
 #panel a:hover    { text-decoration:none; background:#2a2a2a; }
 #panel a.selected { font-weight:bold; background:#333; }
 
-#columnRight { position:absolute; left:300px; right:0; }
+#columnRight { position:absolute; top:0; left:300px; right:0; }
 
 ul#menu { margin:0; padding:10px 10px; text-align:right; background:#111; }
 ul#menu li { display:inline; }
@@ -51,9 +52,9 @@ ul#menu li + li:before { content:'|'; margin:0 20px; }
 #html[selected='1'] .node               { opacity:0.33; }
 #html[selected='1'] .node[selected='1'] { opacity:1.00; background:#222; border-color:#333; }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../_/jquery.min.js"></script>
 <script src="../_/header.js"></script>
-<script type="text/javascript">
+<script>
 
 function isOrphanTag(tag) {
 	return tag === 'INPUT'
@@ -165,66 +166,70 @@ window.onload = function() {
 	<h1>LearnCSS</h1>
 </div>
 
-<div id="panel">
-	<h2>tags selectors</h2>
-		<a href="#" title="L'étoile sélectionne absolument tous les éléments du DOM même les balises <i>head</i>, <i>script</i>, etc.">*</a>
-		<a href="#" title="Sélection de tous les <i>a</i> du document">a</a>
-		<a href="#" title="Sélection de tous les <i>span</i> du document">span</a>
-		<a href="#" title="Sélection de tous les <i>strong</i> du document">strong</a>
-	<h2>parents combinators</h2>
-		<a href="#" title="Sélection des <i>strong</i> ayant un parent (ou grand-parent) de type <i>span</i>">span strong</a>
-		<a href="#" title="Sélection des <i>strong</i> ayant comme parent direct un <i>span</i>">span &gt; strong</a>
-		<a href="#" title="Sélection de tous les éléments ayant un parent (ou grand-parent) de type <i>span</i>">span *</a>
-		<a href="#" title="Sélection de tous les éléments ayant comme parent direct un <i>span</i>">span &gt; *</a>
-		<a href="#" title="Sélection des <i>span</i> ayant comme parent un <i>li</i>, comme grand-parent un <i>ul</i>, etc. sont sélectionnés">div &gt; div &gt; ul &gt; li &gt; span</a>
-		<a href="#" title="Sélection des <i>em</i> ayant comme parent direct un <i>p</i> qui à son tour a un parent ou grand-parent de type <i>li</i>">li p &gt; em</a>
-		<a href="#" title="Sélection des <i>em</i> ayant comme parent direct un <i>p</i> qui à son tour a un parent ou grand-parent de type <i>ul</i>">ul p &gt; em</a>
-		<a href="#" title="Sélection des <i>em</i> ayant comme arrière-grand-parent un <i>div</i> (le parent et le grand-parent peuvent être n'importe quoi)">div &gt; * &gt; * &gt; em</a>
-	<h2>brothers combinators</h2>
-		<a href="#" title="Sélection des <i>h3</i> étant directement en dessous d'un <i>ul</i>">ul + h3</a>
-		<a href="#" title="Sélection de tous les <i>h3</i> étant au même rang et en dessous d'un <i>ul</i> (« The Twins » n'est donc pas sélectionné)">ul ~ h3</a>
-		<a href="#" title="Sélection des <i>li</i> contenus dans les listes précédés d'un <i>h3</i>">h3 + * &gt; li</a>
-	<h2>.class/#id selectors</h2>
-		<a href="#" title="Sélection de tous les éléments ayant la classe « cA »">.cA</a>
-		<a href="#" title="Sélection des <i>span</i> ayant la classe « cA »">span.cA</a>
-		<a href="#" title="Sélection des <i>span</i> ayant les classes « cA » et « cB »">span.cA.cB</a>
-		<a href="#" title="Sélection de l'élément ayant l'id « idA »">#idA</a>
-		<a href="#" title="Sélection du <i>div</i> ayant l'id « idA »">div#idA</a>
-		<a href="#" title="Sélection du <i>div</i> ayant l'id « idA » et la classe « cC »">div#idA.cC</a>
-	<h2>grouping</h2>
-		<a href="#" title="Sélection de tous les <i>a</i> et tous les <i>span</i>">a, span</a>
-		<a href="#" title="Grouping inutile car l'étoile sélectionne tous les éléments d'un coup">a, *, span</a>
-		<a href="#" title="Sélection des <i>span</i> qui ont la class « cA » ou « cB »">span.cA, span.cB</a>
-	<h2>attributes selectors</h2>
-		<a href="#" title="Sélection des <i>a</i> ayant un attribut « title » avec une valeur ou non">a[title]</a>
-		<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » avec pour valeur « # »">a[href='#']</a>
-		<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » dont la valeur commence par « https: »">a[href^='https:']</a>
-		<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » dont la valeur termine par « .com »">a[href$='.com']</a>
-		<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » contenant « google »">a[href*='google']</a>
-		<a href="#" title="Sélection des éléments ayant le mot « cA » dans l'attribut « class » (exactement identique à « *.cA », l'étoile est inutile ici)">*[class~='cA']</a>
-		<a href="#" title="Sélection des éléments ayant un attribut « lang » avec pour valeur « fr » ou commencant par « fr- » (« Morpheus » n'est donc pas sélectionné)">[lang|='fr']</a>
-		<a href="#" title="Il est possible de cumuler autant de filtres que l'on veut">a[href^='https:'][href*='google']</a>
-	<h2>pseudo-classes</h2>
-		<a href="#" title="Sélection des <i>span</i> qui se trouvent être le premier enfant de leur parent">span:first-child</a>
-		<a href="#" title="Sélection des <i>span</i> qui se trouvent être le dernier enfant de leur parent">span:last-child</a>
-		<a href="#" title="Sélection des <i>span</i> qui se trouvent être à la fois le premier et le dernier enfant de leur parent (similaire à « span:first-child:last-child »)">span:only-child</a>
-		<a href="#" title="Sélection des <i>span</i> qui se trouvent être le deuxième enfant de leur parent (« Trinity » et « Colt » ne sont donc pas sélectionnés)">span:nth-child(2)</a>
-		<a href="#" title="Sélection d'un <i>li</i> sur deux en commencant par le premier (identique à « li:nth-child(2n+1) »)">li:nth-child(odd)</a>
-		<a href="#" title="Sélection d'un <i>li</i> sur deux en commencant par le deuxième (identique à « li:nth-child(2n) »)">li:nth-child(even)</a>
-		<a href="#" title="Sélection d'un <i>li</i> sur trois en commencant par le deuxième">li:nth-child(3n-1)</a>
-		<a href="#" title="Sélection des <i>span</i> qui se trouvent être l'avant-dernier enfant de leur parent (« Neo » et « Maggie » ne sont donc pas sélectionnés)">span:nth-last-child(2)</a>
-		<a href="#" title="Sélection de tous les éléments n'ayant absolument aucun enfant ni même aucun text, seul les commentaires HTML seront ignorés">:empty</a>
-		<a href="#" title="Sélection du premier enfant de type <i>span</i> de chaque élément">span:first-of-type</a>
-		<a href="#" title="Aucun <i>li</i> n'est sélectionné (le <i>li</i> « Lock » n'est pas le premier de son type dans son parent)">li.cA:first-of-type</a>
-		<a href="#" title="Sélection du dernier enfant de type <i>span</i> de chaque élément">span:last-of-type</a>
-		<a href="#" title="Équivalent de « span:first-of-type:last-of-type; »">span:only-of-type</a>
-		<a href="#" title="Sélection du deuxième <i>span</i> de chaque élément">span:nth-of-type(2)</a>
-		<a href="#" title="Sélection de l'avant-dernier <i>span</i> de chaque élément">span:nth-last-of-type(2)</a>
-</div>
+<div id="global">
 
-<div id="columnRight">
-	<div id="help"></div>
-	<div id="html"></div>
+	<div id="panel">
+		<h2>tags selectors</h2>
+			<a href="#" title="L'étoile sélectionne absolument tous les éléments du DOM même les balises <i>head</i>, <i>script</i>, etc.">*</a>
+			<a href="#" title="Sélection de tous les <i>a</i> du document">a</a>
+			<a href="#" title="Sélection de tous les <i>span</i> du document">span</a>
+			<a href="#" title="Sélection de tous les <i>strong</i> du document">strong</a>
+		<h2>parents combinators</h2>
+			<a href="#" title="Sélection des <i>strong</i> ayant un parent (ou grand-parent) de type <i>span</i>">span strong</a>
+			<a href="#" title="Sélection des <i>strong</i> ayant comme parent direct un <i>span</i>">span &gt; strong</a>
+			<a href="#" title="Sélection de tous les éléments ayant un parent (ou grand-parent) de type <i>span</i>">span *</a>
+			<a href="#" title="Sélection de tous les éléments ayant comme parent direct un <i>span</i>">span &gt; *</a>
+			<a href="#" title="Sélection des <i>span</i> ayant comme parent un <i>li</i>, comme grand-parent un <i>ul</i>, etc. sont sélectionnés">div &gt; div &gt; ul &gt; li &gt; span</a>
+			<a href="#" title="Sélection des <i>em</i> ayant comme parent direct un <i>p</i> qui à son tour a un parent ou grand-parent de type <i>li</i>">li p &gt; em</a>
+			<a href="#" title="Sélection des <i>em</i> ayant comme parent direct un <i>p</i> qui à son tour a un parent ou grand-parent de type <i>ul</i>">ul p &gt; em</a>
+			<a href="#" title="Sélection des <i>em</i> ayant comme arrière-grand-parent un <i>div</i> (le parent et le grand-parent peuvent être n'importe quoi)">div &gt; * &gt; * &gt; em</a>
+		<h2>brothers combinators</h2>
+			<a href="#" title="Sélection des <i>h3</i> étant directement en dessous d'un <i>ul</i>">ul + h3</a>
+			<a href="#" title="Sélection de tous les <i>h3</i> étant au même rang et en dessous d'un <i>ul</i> (« The Twins » n'est donc pas sélectionné)">ul ~ h3</a>
+			<a href="#" title="Sélection des <i>li</i> contenus dans les listes précédés d'un <i>h3</i>">h3 + * &gt; li</a>
+		<h2>.class/#id selectors</h2>
+			<a href="#" title="Sélection de tous les éléments ayant la classe « cA »">.cA</a>
+			<a href="#" title="Sélection des <i>span</i> ayant la classe « cA »">span.cA</a>
+			<a href="#" title="Sélection des <i>span</i> ayant les classes « cA » et « cB »">span.cA.cB</a>
+			<a href="#" title="Sélection de l'élément ayant l'id « idA »">#idA</a>
+			<a href="#" title="Sélection du <i>div</i> ayant l'id « idA »">div#idA</a>
+			<a href="#" title="Sélection du <i>div</i> ayant l'id « idA » et la classe « cC »">div#idA.cC</a>
+		<h2>grouping</h2>
+			<a href="#" title="Sélection de tous les <i>a</i> et tous les <i>span</i>">a, span</a>
+			<a href="#" title="Grouping inutile car l'étoile sélectionne tous les éléments d'un coup">a, *, span</a>
+			<a href="#" title="Sélection des <i>span</i> qui ont la class « cA » ou « cB »">span.cA, span.cB</a>
+		<h2>attributes selectors</h2>
+			<a href="#" title="Sélection des <i>a</i> ayant un attribut « title » avec une valeur ou non">a[title]</a>
+			<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » avec pour valeur « # »">a[href='#']</a>
+			<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » dont la valeur commence par « https: »">a[href^='https:']</a>
+			<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » dont la valeur termine par « .com »">a[href$='.com']</a>
+			<a href="#" title="Sélection des <i>a</i> ayant un attribut « href » contenant « google »">a[href*='google']</a>
+			<a href="#" title="Sélection des éléments ayant le mot « cA » dans l'attribut « class » (exactement identique à « *.cA », l'étoile est inutile ici)">*[class~='cA']</a>
+			<a href="#" title="Sélection des éléments ayant un attribut « lang » avec pour valeur « fr » ou commencant par « fr- » (« Morpheus » n'est donc pas sélectionné)">[lang|='fr']</a>
+			<a href="#" title="Il est possible de cumuler autant de filtres que l'on veut">a[href^='https:'][href*='google']</a>
+		<h2>pseudo-classes</h2>
+			<a href="#" title="Sélection des <i>span</i> qui se trouvent être le premier enfant de leur parent">span:first-child</a>
+			<a href="#" title="Sélection des <i>span</i> qui se trouvent être le dernier enfant de leur parent">span:last-child</a>
+			<a href="#" title="Sélection des <i>span</i> qui se trouvent être à la fois le premier et le dernier enfant de leur parent (similaire à « span:first-child:last-child »)">span:only-child</a>
+			<a href="#" title="Sélection des <i>span</i> qui se trouvent être le deuxième enfant de leur parent (« Trinity » et « Colt » ne sont donc pas sélectionnés)">span:nth-child(2)</a>
+			<a href="#" title="Sélection d'un <i>li</i> sur deux en commencant par le premier (identique à « li:nth-child(2n+1) »)">li:nth-child(odd)</a>
+			<a href="#" title="Sélection d'un <i>li</i> sur deux en commencant par le deuxième (identique à « li:nth-child(2n) »)">li:nth-child(even)</a>
+			<a href="#" title="Sélection d'un <i>li</i> sur trois en commencant par le deuxième">li:nth-child(3n-1)</a>
+			<a href="#" title="Sélection des <i>span</i> qui se trouvent être l'avant-dernier enfant de leur parent (« Neo » et « Maggie » ne sont donc pas sélectionnés)">span:nth-last-child(2)</a>
+			<a href="#" title="Sélection de tous les éléments n'ayant absolument aucun enfant ni même aucun text, seul les commentaires HTML seront ignorés">:empty</a>
+			<a href="#" title="Sélection du premier enfant de type <i>span</i> de chaque élément">span:first-of-type</a>
+			<a href="#" title="Aucun <i>li</i> n'est sélectionné (le <i>li</i> « Lock » n'est pas le premier de son type dans son parent)">li.cA:first-of-type</a>
+			<a href="#" title="Sélection du dernier enfant de type <i>span</i> de chaque élément">span:last-of-type</a>
+			<a href="#" title="Équivalent de « span:first-of-type:last-of-type; »">span:only-of-type</a>
+			<a href="#" title="Sélection du deuxième <i>span</i> de chaque élément">span:nth-of-type(2)</a>
+			<a href="#" title="Sélection de l'avant-dernier <i>span</i> de chaque élément">span:nth-last-of-type(2)</a>
+	</div>
+
+	<div id="columnRight">
+		<div id="help"></div>
+		<div id="html"></div>
+	</div>
+
 </div>
 
 <div id="demoCode"><div>
