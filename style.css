@@ -1,0 +1,123 @@
+body {
+	color: #d8f8b3;
+	background: #222;
+	font: 12px arial;
+}
+a {
+	color: #d8f8b3;
+	text-decoration: none;
+}
+a:hover {
+	color: #e6bf4d;
+	text-decoration: underline;
+}
+
+#global {
+	position: relative;
+	height: 100%;
+}
+
+#panel {
+	box-sizing: border-box;
+	width: 280px;
+	height: 100%;
+	overflow: auto;
+	padding: 0 10px 50px 10px;
+	border-right: 2px solid #111;
+}
+#panel h2 {
+	margin: 22px 0 5px 0;
+	font-size: 16px;
+	color: #a6e22e;
+}
+#panel a {
+	display: block;
+	font: 12px consolas;
+	padding: 2px 4px;
+	border-radius: 2px;
+}
+#panel a:hover {
+	text-decoration: none;
+	background: #2a2a2a;
+}
+#panel a.selected {
+	font-weight: bold;
+	background: #333;
+}
+
+#columnRight {
+	position: absolute;
+	top: 0;
+	left: 300px;
+	right: 0;
+}
+
+ul#menu {
+	margin: 0;
+	padding: 10px 10px;
+	text-align: right;
+	background: #111;
+}
+ul#menu li {
+	display: inline;
+}
+ul#menu li + li:before {
+	content: "|";
+	margin: 0 20px;
+}
+
+#help {
+	padding: 20px 10px;
+	border-bottom: 1px dashed #444;
+}
+#help:before {
+	color: #a6e22e;
+	font-weight: bold;
+	content: "/* Aide : ";
+}
+#help:after {
+	color: #a6e22e;
+	font-weight: bold;
+	content: " */";
+}
+#help:empty:after {
+	font-weight: normal;
+	content: "... */";
+}
+#help i:before { content: "\3C"; }
+#help i:after  { content: "\3E"; }
+
+#demoCode {
+	display: none;
+}
+#html {
+	margin: 20px 0 0 10px;
+	font: 12px consolas;
+}
+
+.node.tB:before   { content: "\3C/"; }
+.node.tA:before   { content:  "\3C"; }
+.node.tA:after,
+.node.tB:after    { content:  "\3E"; }
+.node.tA.tB:after { content: "/\3E"; }
+
+.node {
+	margin-left: 1px;
+	border-radius: 2px;
+	border: 1px solid transparent;
+}
+
+.node         { color: #f8f8f2; }
+.node.comment { color: #75715e; }
+.node .tag    { color: #f92672; }
+.node .attr   { color: #a6e22e; }
+.node .value  { color: #e6db74; }
+
+#html[selected='1'] .node {
+	opacity: 0.33;
+}
+#html[selected="1"] .node[selected="1"] {
+	opacity: 1;
+	background: #222;
+	border-color: #333;
+}
