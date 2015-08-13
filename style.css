@@ -40,7 +40,7 @@ a:hover {
 	text-decoration: none;
 	background: #2a2a2a;
 }
-#panel a.selected {
+#panel a.select {
 	font-weight: bold;
 	background: #333;
 }
@@ -113,10 +113,10 @@ ul#menu li + li:before {
 .node .attr   { color: #a6e22e; }
 .node .value  { color: #e6db74; }
 
-#html[selected='1'] .node {
+#html[select="1"] .node {
 	opacity: 0.33;
 }
-#html[selected="1"] .node[selected="1"] {
+#html[select="1"] .node[select="1"] {
 	opacity: 1;
 	background: #222;
 	border-color: #333;
