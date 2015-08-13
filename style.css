@@ -105,6 +105,7 @@ ul#menu li + li:before {
 	margin-left: 1px;
 	border-radius: 2px;
 	border: 1px solid transparent;
+	transition: opacity .25s;
 }
 
 .node         { color: #f8f8f2; }
@@ -114,7 +115,7 @@ ul#menu li + li:before {
 .node .value  { color: #e6db74; }
 
 #html[select="1"] .node {
-	opacity: 0.33;
+	opacity: .15;
 }
 #html[select="1"] .node[select="1"] {
 	opacity: 1;
